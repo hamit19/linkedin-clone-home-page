@@ -1,0 +1,15 @@
+.option-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: gray;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.option-wrapper:hover {
+  background-color: whitesmoke;
+}

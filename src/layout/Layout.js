@@ -1,14 +1,14 @@
 import React from "react";
 import Header from "../components/header/Header";
+import "./Layout.css";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="layout">
       {/* header */}
-
       <Header />
 
-      <main>{children}</main>
+      <main className="app__body">{children}</main>
     </div>
   );
 };

@@ -1,0 +1,29 @@
+.post-container {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.post-container .post__header {
+  display: flex;
+  gap: 0.8rem;
+  padding: 1rem;
+}
+
+.post-container .post__header .post__desc p {
+  font-size: 13px;
+  color: gray;
+  font-weight: 500;
+}
+
+.post-container .post__message {
+  padding: 0.5rem 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.post__actions {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem 0.3rem;
+}

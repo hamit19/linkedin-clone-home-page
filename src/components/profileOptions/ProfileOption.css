@@ -1,0 +1,20 @@
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.3rem;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: gray;
+  font-weight: 400;
+}
+.action-btn h4 {
+  font-weight: 500;
+}
+
+.action-btn:hover {
+  background-color: whitesmoke;
+  padding-left: 1rem;
+}

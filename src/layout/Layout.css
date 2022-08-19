@@ -1,0 +1,9 @@
+.app__body {
+  display: flex;
+  grid-template-columns: repeat(24, 1fr);
+  background-color: #f3f3f3dd;
+}
+
+.layout {
+  position: relative;
+}
