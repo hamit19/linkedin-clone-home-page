@@ -12,9 +12,8 @@ import MessageIcon from "@material-ui/icons/Message";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import ProfileOption from "../profileOptions/ProfileOption";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { useSelector } from "react-redux/es/hooks/useSelector";
 import { auth } from "../../firebase/FirebaseConfig";
-import { logout, selectUser } from "../../features/userSlice";
+import { logout } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -23,7 +22,8 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  const onClickHandler = () => {
+  const onClickHandler = (e) => {
+    e.stopPropagation();
     setShowOption(!showOption);
   };
 
@@ -34,7 +34,12 @@ const Header = () => {
   };
 
   return (
-    <header className="header" onClick={onClickHandler}>
+    <header
+      className="header"
+      onClick={() => {
+        setShowOption(false);
+      }}
+    >
       <nav className="navbar">
         {/* left navbar */}
 
