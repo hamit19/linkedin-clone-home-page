@@ -1,5 +1,5 @@
 import { Avatar } from "@material-ui/core";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { selectUser } from "../../features/userSlice";
 import RecentItem from "./RecentItem";
