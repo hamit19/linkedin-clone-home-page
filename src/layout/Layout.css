@@ -1,9 +1,18 @@
 .app__body {
   display: flex;
-  grid-template-columns: repeat(24, 1fr);
+  max-width: 1228px;
+  margin: auto;
   background-color: #f3f3f3dd;
 }
 
 .layout {
   position: relative;
+}
+
+@media only screen and (max-width: 768px) {
+  .app__body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }

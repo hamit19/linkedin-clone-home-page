@@ -13,3 +13,15 @@
 .option-wrapper:hover {
   background-color: whitesmoke;
 }
+
+@media only screen and (max-width: 768px) {
+  .inputOption-icon {
+    font-size: 16px !important;
+  }
+  .option-wrapper h4 {
+    font-size: 12px;
+  }
+  .option-wrapper {
+    padding: 0.5rem;
+  }
+}

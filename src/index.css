@@ -6,9 +6,9 @@
 
 html,
 body,
-#root,
-.App {
+#root {
   height: 100% !important;
+  background-color: #f3f3f3dd;
 }
 
 body {

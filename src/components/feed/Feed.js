@@ -14,6 +14,7 @@ import "./Feed.css";
 import InputOption from "../inputOtion/InputOption";
 import Post from "../post/Post";
 import { selectUser } from "../../features/userSlice";
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const Feed = () => {
   const [input, setInput] = useState("");
@@ -32,30 +33,15 @@ const Feed = () => {
   };
 
   const renderPosts = () => {
-    if (posts.length <= 0) {
-      return (
-        <h3
-          style={{
-            position: "absolute",
-            top: "5rem",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
-        >
-          Loading...
-        </h3>
-      );
-    } else {
-      return posts.map((post) => (
-        <Post
-          key={post.id}
-          name={post.name}
-          description={post.description}
-          imageUrl={post.photoUrl}
-          message={post.message}
-        />
-      ));
-    }
+    return posts.map((post) => (
+      <Post
+        key={post.id}
+        name={post.name}
+        description={post.description}
+        imageUrl={post.photoUrl}
+        message={post.message}
+      />
+    ));
   };
 
   const addNewPost = async (e) => {
@@ -89,6 +75,7 @@ const Feed = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              placeholder="Add a new post"
             />
             <button className="submit-btn" type="submit">
               send
@@ -111,7 +98,22 @@ const Feed = () => {
         </div>
       </div>
       {/* posts */}
-      <FlipMove className="posts__wrapper">{renderPosts()}</FlipMove>
+      {posts.length <= 0 ? (
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <FlipMove className="posts__wrapper">{renderPosts()}</FlipMove>
+      )}
     </div>
   );
 };
