@@ -32,6 +32,13 @@ const LoginPage = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password)
         .then((userAuth) => {
+          localStorage.getItem("token") && localStorage.removeItem("token");
+
+          localStorage.setItem(
+            "token",
+            JSON.stringify(userAuth.user.accessToken)
+          );
+
           dispatch(
             loginAction({
               uid: userAuth.user.uid,

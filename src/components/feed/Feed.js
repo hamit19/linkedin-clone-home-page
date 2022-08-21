@@ -19,12 +19,47 @@ import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 const Feed = () => {
   const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
+  const [editing, setEditing] = useState(false);
+  const [oldPost, setOldPost] = useState({});
 
   const user = useSelector(selectUser);
 
-  useEffect(() => {
-    getAllPosts();
-  }, [posts.length]);
+  const deletePostHandler = async (e, id) => {
+    e.stopPropagation();
+    try {
+      await postsServices.deletePost(id);
+      getAllPosts();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editPostHandler = async (e, id) => {
+    e.stopPropagation();
+    setEditing(true);
+
+    // finding the post obj
+    const post = posts.find((p) => p.id === id);
+
+    setOldPost(post);
+
+    setInput(post.message);
+  };
+
+  const updatePostInServer = async () => {
+    const editedPost = { ...oldPost, message: input };
+    const { id } = editedPost;
+
+    try {
+      postsServices.updatePost(id, editedPost).then(() => {
+        getAllPosts();
+        setEditing(false);
+        setInput("");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getAllPosts = async () => {
     const data = await postsServices.getAllPosts();
@@ -32,14 +67,22 @@ const Feed = () => {
     setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
+  useEffect(() => {
+    getAllPosts();
+  }, [posts.length]);
+
   const renderPosts = () => {
     return posts.map((post) => (
       <Post
+        userId={post.userId}
         key={post.id}
+        id={post.id}
         name={post.name}
         description={post.description}
         imageUrl={post.photoUrl}
         message={post.message}
+        onDelete={deletePostHandler}
+        onEdit={editPostHandler}
       />
     ));
   };
@@ -47,7 +90,10 @@ const Feed = () => {
   const addNewPost = async (e) => {
     e.preventDefault();
 
+    if (editing) return;
+
     const newPost = {
+      userId: user.uid,
       name: user.displayName,
       description: user.email,
       photoUrl: user.photoURL || "",
@@ -77,10 +123,16 @@ const Feed = () => {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Add a new post"
             />
-            <button className="submit-btn" type="submit">
-              send
-            </button>
           </form>
+          {editing && (
+            <button
+              className="submit-btn"
+              onClick={updatePostInServer}
+              type="onClick"
+            >
+              Edit
+            </button>
+          )}
         </div>
         <div className="option-btn">
           <InputOption Icon={ImageIcon} color={"#70b5f9"} title={"Photo"} />

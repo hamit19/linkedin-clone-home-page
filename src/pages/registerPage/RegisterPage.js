@@ -44,6 +44,13 @@ const RegisterPage = () => {
           });
         })
         .then(() => {
+          localStorage.getItem("token") && localStorage.removeItem("token");
+
+          localStorage.setItem(
+            "token",
+            JSON.stringify(auth.currentUser.accessToken)
+          );
+
           setTimeout(() => {
             dispatch(
               loginAction({
