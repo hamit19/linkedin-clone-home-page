@@ -63,8 +63,7 @@
 
 @media only screen and (max-width: 768px) {
   .options-wrapper {
-    left: 0rem;
-    top: auto;
-    right: auto;
+    top: 2rem;
+    right: 1rem;
   }
 }
