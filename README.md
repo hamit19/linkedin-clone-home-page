@@ -1,6 +1,6 @@
 # LinkedIn-clone-home-page 
 
-<h3> Check Out the template online: <a href="https://linkedin-a20c8.web.app/"> Click here to redirect </a> </h3>
+<h3> checkout the template online: <a href="https://linkedin-a20c8.web.app/"> Click here to redirect </a> </h3>
 
 
 # ![React Redux App - Google Chrome 8_22_2022 8_02_37 PM-min](https://user-images.githubusercontent.com/96312176/185970746-98fcc32d-257f-4fe6-baa0-e713ee364c9a.png)
